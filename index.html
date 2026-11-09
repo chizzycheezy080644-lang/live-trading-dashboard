@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="refresh" content="300"/>
 <title>Live Bitget Spot Bot — REAL MONEY</title>
 <style>
 :root {
@@ -268,70 +267,118 @@ footer {
 .sb th, .sb td { padding: 8px 6px; }
 .sb td:first-child { color: var(--muted); }
 
-/* Live-money extras */
 .banner.real {
   background: linear-gradient(90deg, #7a1020, #a33a12);
-  border-color: #ff6b7a;
+  border: 1px solid #ff6b7a;
+  color: #ffe8d6;
   font-size: 1.05rem;
-}
-.badge.type-big { background: rgba(91,140,255,.2); color: #9bbbff; border: 1px solid rgba(91,140,255,.45); }
-.badge.type-meme { background: rgba(192,132,252,.2); color: #e0b3ff; border: 1px solid rgba(192,132,252,.45); }
-.badge.type-other { background: rgba(147,160,184,.15); color: var(--muted); border: 1px solid var(--line); }
-.badge.live-mode { background: rgba(255,107,122,.18); color: #ffb3bb; border: 1px solid rgba(255,107,122,.45); }
-.logbox {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 12px 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .78rem; color: var(--muted); white-space: pre-wrap; max-height: 220px; overflow: auto;
 }
 
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="banner real">REAL MONEY — about $1 per trade · max 5 open · Bitget spot only · You can lose this money · No profit promised</div>
+  <div class="banner real">REAL MONEY — Bitget spot · ~$1.10/trade · max 5 open · You can lose this money · No profit promised</div>
   <header>
-    <div>
-      <h1>Live Bitget Spot Bot</h1>
-      <div class="subhead">Last bot scan: Nov 10, 00:05 Africa/Lagos · Mode: LIVE</div>
+    <div><h1>Live Bitget Spot Bot</h1>
+      <div class="subhead">One real Spot wallet · Big + Meme tags · Scoreboard · Growth chart · Live prices</div></div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+      <div class="pill live-off" id="live-pill"><span class="dot"></span><strong>LIVE</strong>
+        <span id="live-tick-time">connecting…</span></div>
+      <div class="pill"><span class="dot" style="animation:none;background:var(--accent)"></span> Last scan: Nov 10, 00:15 Lagos</div>
     </div>
-    <div class="pill" id="live-pill"><span class="dot"></span> Prices <span id="live-tick-time">—</span></div>
   </header>
-  <div class="subhead" style="margin-top:-6px;margin-bottom:10px">Price source: <span id="live-endpoint">—</span> · refreshes ~10s · page reloads ~5 min after each publish</div>
-  <div class="ticker"><div class="ticker-item" data-sym="BTCUSDT"><div class="sub">BTC</div><div class="t-price">—</div></div><div class="ticker-item" data-sym="ETHUSDT"><div class="sub">ETH</div><div class="t-price">—</div></div><div class="ticker-item" data-sym="SOLUSDT"><div class="sub">SOL</div><div class="t-price">—</div></div><div class="ticker-item" data-sym="DOGEUSDT"><div class="sub">DOGE</div><div class="t-price">—</div></div><div class="ticker-item" data-sym="XRPUSDT"><div class="sub">XRP</div><div class="t-price">—</div></div></div>
 
-  <div class="wallets">
-    <div class="card wcard">
-      <h3>USDT free (snapshot)</h3>
-      <div class="label">From last bot run — not a live wallet API</div>
-      <div class="big-num">$4.18</div>
-      <div class="kv">
-        <span>Approx equity</span><span id="equity-live">$5.37</span>
-        <span>Unrealized (open)</span><span id="unrealized">—</span>
-        <span>Open / max</span><span>1 / 5</span>
-        <span>Per-trade cap</span><span>$1.10 (hard ≤ $1.20)</span>
-        <span>Daily loss limit</span><span>5% of day-start equity</span>
-        <span>Memes allowed</span><span>yes</span>
-      </div>
-    </div>
-    <div class="card wcard">
-      <h3>Scoreboard (LIVE closes only)</h3>
-      <div class="kv">
-        <span>Wins</span><span class="pos">0</span>
-        <span>Losses</span><span class="neg">0</span>
-        <span>Closed LIVE trades</span><span>0</span>
-        <span>Realized P/L</span><span class="muted">$0.00</span>
-      </div>
-      <div class="sub" style="margin-top:10px">Kill switch: <code>touch /workspace/trading/livebot/STOP</code></div>
-    </div>
+  <div class="ticker" id="live-ticker">
+    <div class="ticker-item" data-ticker="BTCUSDT"><div class="t-sym">BTC</div><div class="t-price">—</div></div>
+    <div class="ticker-item" data-ticker="ETHUSDT"><div class="t-sym">ETH</div><div class="t-price">—</div></div>
+    <div class="ticker-item" data-ticker="SOLUSDT"><div class="t-sym">SOL</div><div class="t-price">—</div></div>
+    <div class="ticker-item" data-ticker="DOGEUSDT"><div class="t-sym">DOGE</div><div class="t-price">—</div></div>
+    <div class="ticker-item" data-ticker="PEPEUSDT"><div class="t-sym">PEPE</div><div class="t-price">—</div></div>
   </div>
 
-  <h2 style="margin:18px 0 8px">Open trades</h2>
-  
-<div class="tcard" data-trade-id="3" data-type="big">
+  <div class="wallets">
+<div class="card wcard meme">
+  <h3><span class="swatch" style="background:#c084fc"></span>Meme coins</h3>
+  <div class="label">Open value (this type)</div>
+  <div class="big-num" id="eq-meme">$1.04</div>
+  <div class="kv">
+    <span>Return</span><span id="ret-meme" class="muted">—</span>
+    <span>Unrealized (if sold now)</span><span id="un-meme">—</span>
+    <span>Open trades value</span><span id="ov-meme">$1.04</span>
+    <span>Cash (free USDT)</span><span>— (shared pool)</span>
+    <span>Realized P/L (net)</span><span class="muted">$0.00</span>
+    <span>Win rate</span><span>—</span>
+    <span>Open / closed</span><span>1 / 0</span>
+    <span>Started with</span><span>—</span>
+  </div>
+</div>
+<div class="card wcard big">
+  <h3><span class="swatch" style="background:#5b8cff"></span>Big coins</h3>
+  <div class="label">Open value (this type)</div>
+  <div class="big-num" id="eq-big">$1.19</div>
+  <div class="kv">
+    <span>Return</span><span id="ret-big" class="muted">—</span>
+    <span>Unrealized (if sold now)</span><span id="un-big">—</span>
+    <span>Open trades value</span><span id="ov-big">$1.19</span>
+    <span>Cash (free USDT)</span><span>— (shared pool)</span>
+    <span>Realized P/L (net)</span><span class="muted">$0.00</span>
+    <span>Win rate</span><span>—</span>
+    <span>Open / closed</span><span>1 / 0</span>
+    <span>Started with</span><span>—</span>
+  </div>
+</div>
+<div class="card wcard total">
+  <h3><span class="swatch" style="background:#22d3a6"></span>Combined (Spot)</h3>
+  <div class="label">Live REAL equity</div>
+  <div class="big-num" id="eq-total">$5.36</div>
+  <div class="kv">
+    <span>Return</span><span id="ret-total" class="neg">-0.28%</span>
+    <span>Unrealized (if sold now)</span><span id="un-total">—</span>
+    <span>Open trades value</span><span id="ov-total">$2.23</span>
+    <span>Cash (free USDT)</span><span>$3.13</span>
+    <span>Realized P/L (net)</span><span class="muted">$0.00</span>
+    <span>Win rate</span><span>—</span>
+    <span>Open / closed</span><span>2 / 0</span>
+    <span>Started with</span><span>$5.37</span>
+  </div>
+</div></div>
+
+  <section class="section">
+    <h2>Last scan alerts</h2>
+    <div class="alerts"><ul style="margin:0;padding-left:18px"><li>OPENED #4 ONDO: $1.04 at 0.3745476 (LIVE). Why: [meme] Volume jumped to 4.06x its normal level; no bad news found (no matching headlines); price 0.3738 was 0.856% above support at 0.3706. Safety exit (stop-loss) 0.362586 (-3.0%), target (take-profit) 0.3901 (+4.4%).</li></ul></div>
+  </section>
+
+  <section class="section">
+    <h2>Scoreboard</h2>
+    <div class='sb-wrap'><table class='sb'><thead><tr><th>Stat</th><th class='num'>Meme coins</th><th class='num'>Big coins</th><th class='num'>Combined (Spot)</th></tr></thead><tbody><tr><td>Win rate</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td></tr><tr><td>Wins</td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td></tr><tr><td>Losses</td><td class='num'>0</td><td class='num'>0</td><td class='num'>0</td></tr><tr><td>Average win</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td></tr><tr><td>Average loss</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td></tr><tr><td>Profit factor</td><td class='num'>0.00</td><td class='num'>0.00</td><td class='num'>0.00</td></tr><tr><td>Max drawdown</td><td class='num'>$0.00 (0.00%)</td><td class='num'>-$0.00 (0.04%)</td><td class='num'>-$1.05 (16.32%)</td></tr><tr><td>Total fees paid</td><td class='num'>$0.00</td><td class='num'>$0.00</td><td class='num'>$0.00</td></tr><tr><td>Realized P/L (net)</td><td class='num'>$0.00</td><td class='num'>$0.00</td><td class='num'>$0.00</td></tr></tbody></table></div><div class='sb-help'><b>Win rate</b> = share of closed LIVE trades that made money. <b>Profit factor</b> = money won ÷ money lost (above 1.0 is good; needs many trades to mean anything). <b>Max drawdown</b> = biggest drop from a high point — the scariest moment so far. A handful of trades is NOT enough to judge the bot. Real money can be lost.</div>
+  </section>
+
+  <section class="section">
+    <h2>Wallet growth chart</h2>
+    <div class="card chart-card">
+      <div class="chart-legend"><span><i style="background:#c084fc"></i>Meme coins (open)</span>
+        <span><i style="background:#5b8cff"></i>Big coins (open)</span>
+        <span><i style="background:#22d3a6"></i>Combined Spot equity</span>
+        <span><i style="background:#f5a524"></i>Start ($5.37)</span>
+        <span>Hollow dot = live now</span></div>
+      <svg id="equity-chart" viewBox="0 0 640 300" role="img" aria-label="Wallet growth chart"></svg>
+    </div>
+  </section>
+
+  <div class="note">0.1% fee each way + slippage (0.05% big coins, 0.2% meme/small). Per-trade cap ~$1.10 (hard ≤ $1.20). Max 5 open trades. Bitget spot only. Prices refresh about every 3 seconds; page reloads every 5 minutes after publish.
+    <div class="live-meta">Source: <span id="live-endpoint">—</span> · Clock: <span id="live-clock">—</span>
+    · Kill switch: <code>touch /workspace/trading/livebot/STOP</code></div></div>
+
+  <section class="section">
+    <h2>Open live trades</h2>
+    <div class="filter" data-target="open-trades"><button class="on" data-f="all">All</button><button data-f="meme">Meme coins</button><button data-f="big">Big coins</button></div>
+    <div class="trades" id="open-trades">
+<div class="tcard" data-trade-id="3" data-wallet="big">
   <div class="top">
     <div><div class="coin">BCH <span class="sub">#3</span></div>
-      <span class="badge type-big">Big coin</span> <span class="badge live-mode">LIVE</span>
-      <div class="sub">Opened Nov 10, 00:02 Africa/Lagos · manage=plan</div></div>
+      <span class="badge wallet-big">Big coins</span> <span class="badge fees">LIVE · plan</span>
+      <div class="sub">Opened Nov 10, 00:02 Lagos</div></div>
     <div class="pnl-box"><div class="pnl-usd muted">—</div><div class="pnl-pct sub">waiting for live price…</div></div>
   </div>
   <div class="grid3">
@@ -340,59 +387,88 @@ footer {
     <div><span>Size</span>$1.19</div>
     <div><span>Stop-loss</span><b class="neg">231.54</b></div>
     <div><span>Take-profit</span><b class="pos">244.10</b></div>
-    <div><span>Qty</span>0.005</div>
+    <div><span>Fee (est.)</span>$0.00</div>
   </div>
   <div class="progress-cell"><div class="prog-wrap"><div class="prog-bar" style="width:0%"></div>
     <div class="prog-markers"><span class="m-sl">SL</span><span class="m-entry">E</span><span class="m-tp">TP</span></div>
   </div><div class="prog-label sub">—</div></div>
   <div class="hit-flag"></div>
-  <div class="why"><b>Why:</b> [big] First live ~$1.2 BCH buy after Bitget rejected exact $1.00 quote size.</div>
+  <div class="why"><b>Why I took this trade:</b> [big] First live ~$1.2 BCH buy after Bitget rejected exact $1.00 quote size.</div>
 </div>
+<div class="tcard" data-trade-id="4" data-wallet="meme">
+  <div class="top">
+    <div><div class="coin">ONDO <span class="sub">#4</span></div>
+      <span class="badge wallet-meme">Meme coins</span> <span class="badge fees">LIVE · plan</span>
+      <div class="sub">Opened Nov 10, 00:15 Lagos</div></div>
+    <div class="pnl-box"><div class="pnl-usd muted">—</div><div class="pnl-pct sub">waiting for live price…</div></div>
+  </div>
+  <div class="grid3">
+    <div><span>Entry</span>0.3745476</div>
+    <div><span>Live</span><b class="live-price" data-role="live">—</b></div>
+    <div><span>Size</span>$1.04</div>
+    <div><span>Stop-loss</span><b class="neg">0.362586</b></div>
+    <div><span>Take-profit</span><b class="pos">0.3901</b></div>
+    <div><span>Fee (est.)</span>$0.00</div>
+  </div>
+  <div class="progress-cell"><div class="prog-wrap"><div class="prog-bar" style="width:0%"></div>
+    <div class="prog-markers"><span class="m-sl">SL</span><span class="m-entry">E</span><span class="m-tp">TP</span></div>
+  </div><div class="prog-label sub">—</div></div>
+  <div class="hit-flag"></div>
+  <div class="why"><b>Why I took this trade:</b> [meme] Volume jumped to 4.06x its normal level; no bad news found (no matching headlines); price 0.3738 was 0.856% above support at 0.3706. Safety exit (stop-loss) 0.362586 (-3.0%), target (take-profit) 0.3901 (+4.4%).</div>
+</div></div>
+  </section>
 
-  <h2 style="margin:18px 0 8px">Closed LIVE trades</h2>
-  <p class="empty">No closed LIVE trades yet (dry-run tests are hidden).</p>
+  <section class="section">
+    <h2>Closed live trades</h2>
+    <div class="filter" data-target="closed-trades"><button class="on" data-f="all">All</button><button data-f="meme">Meme coins</button><button data-f="big">Big coins</button></div>
+    <div class="trades" id="closed-trades"><p class="empty">No closed LIVE trades yet.</p></div>
+  </section>
 
-  <h2 style="margin:18px 0 8px">Last scan alerts</h2>
-  <div class="alerts none">No opens/closes in the last scan.</div>
+  <section class="section card">
+    <h2>How the last scan narrowed down</h2>
+    <div class="funnel"><div class="funnel-row"><div class="funnel-step">Step 1</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%"><span class="funnel-num">271</span></div></div><div class="funnel-meta"><strong>Liquid USDT pairs</strong><span>Above the $500k volume floor</span></div></div><div class="funnel-row"><div class="funnel-step">Step 2</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:22%"><span class="funnel-num">60</span></div></div><div class="funnel-meta"><strong>Deep-scanned</strong><span>Top 60 by liquidity</span></div></div><div class="funnel-row"><div class="funnel-step">Step 3</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">23</span></div></div><div class="funnel-meta"><strong>Volume spikes</strong><span>≥ 1.8× recent average</span></div></div><div class="funnel-row"><div class="funnel-step">Step 4</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">37</span></div></div><div class="funnel-meta"><strong>Memes / non-big deep-scanned</strong><span>Tagged like the paper meme wallet</span></div></div><div class="funnel-row"><div class="funnel-step">Step 5</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">1</span></div></div><div class="funnel-meta"><strong>LIVE trades opened</strong><span>Spike + news OK + near support (Bitget spot)</span></div></div></div>
+  </section>
 
-  <h2 style="margin:18px 0 8px">Last summary log</h2>
-  <div class="logbox">LIVE BOT STATUS (Bitget spot only)
-Mode: LIVE
-Kill switch file: /workspace/trading/livebot/STOP (off)
-USDT free: $4.18  total: $4.18
-Equity (approx): $5.37
-Open positions: 1 / max 5
-Closed trades: 2 (wins 2 / losses 0)
-ALLOW_MEME_COINS=True  MAX_TRADE_USD=1.1
-DRY_RUN=False  LIVE_ENABLED=True
+  <section class="section">
+    <h2>Rules in plain English</h2>
+    <div class="rules">
+      <p>This bot places <strong>real Bitget spot</strong> buys with your USDT. Same three checks as the paper bot:</p>
+      <ol>
+        <li><strong>Volume spike</strong> — trading volume jumps to about <strong>1.8×</strong> normal.</li>
+        <li><strong>News not bad</strong> — free headlines are checked; bad news (hack, ban, crash…) means skip.</li>
+        <li><strong>Near support</strong> — price is sitting just above a recent low point.</li>
+      </ol>
+      <p style="margin-top:10px">Trades are tagged <strong>Big coins</strong> or <strong>Meme coins</strong> (same split as paper).
+        Each new trade is about <strong>$1.10</strong> (never above $1.20),
+        up to <strong>5</strong> open at once, with stop-loss about
+        <strong>−3%</strong> and take-profit up to <strong>+6%</strong>.
+        Wide spreads and dead pairs are skipped. Spot only — no leverage, no futures, no withdrawals by this bot.</p>
+      <p style="margin-top:8px"><strong>You can lose real money. No profit is promised. Paper results ≠ live results.</strong></p>
+    </div>
+  </section>
 
-Open:
-  #3 BCH/USDT entry=238.8 SL=231.539 TP=244.1 size=$1.19 (plan)
-
-Trade exchange: bitget (spot)
-Public scan exchange: binance
-Liquid USDT pairs: 271; deep-scanned: 60; spikes: 22
-Opens this run: 0; closes this run: 0
-Alerts: 0
-Keys in env: True (values never logged)
-TP/SL: Bitget plan/trigger when live+supported, otherwise polling each run.
-Crypto only. No stocks. No futures. No margin. No withdrawals.
-
-WARNING: Real crypto trading can lose money. No profit is promised.
+  <footer>REAL MONEY on Bitget spot. Live prices from public Binance market data (same as paper). Times in Africa/Lagos. No API keys on this page.</footer>
 </div>
-
-  <p class="sub" style="margin-top:18px">Crypto spot only. No leverage, no futures, no withdrawals by this bot. This page never contains API keys. Past results (including paper) do not predict live results.</p>
-</div>
-<script>window.__DATA__ = {"usdt_free":4.178556,"equity":5.3701,"fee":0.001,"max_trade":1.1,"max_open":5,"open":[{"id":"3","symbol":"BCH/USDT","base":"BCH","bitget":"BCHUSDT","entry":238.8,"sl":231.539,"tp":244.1,"qty":0.005,"notional":1.19,"coin_type":"big"}]};</script>
+<script>window.__DATA__ = {"start":5.3726,"fee":0.001,"wallets":{"meme":{"name":"Meme coins","cash":0.0},"big":{"name":"Big coins","cash":3.131636}},"spot_cash":3.131636,"open":[{"id":"3","wallet":"big","symbol":"BCH/USDT","base":"BCH","binance":"BCHUSDT","last":238.1,"entry":238.8,"sl":231.539,"tp":244.1,"qty":0.005,"notional":1.19,"fee_model":"fees_v1","slip":0.0005},{"id":"4","wallet":"meme","symbol":"ONDO/USDT","base":"ONDO","binance":"ONDOUSDT","last":0.3739,"entry":0.3745476,"sl":0.362586,"tp":0.3901,"qty":2.77,"notional":1.04,"fee_model":"fees_v1","slip":0.002}],"equity":[{"t":1794266099000,"meme":0.0,"big":1.1905,"total":5.3691},{"t":1794266146000,"meme":1.0343,"big":1.19,"total":6.4029},{"t":1794266169000,"meme":1.0357,"big":1.1905,"total":5.3578}],"stock_note":""};</script>
 <script>
 (function () {
   "use strict";
   var D = window.__DATA__ || {};
   var trades = D.open || [];
-  var POLL_MS = 10000;
+  var WALLETS = Object.keys(D.wallets || { meme: 1, big: 1 }).filter(function(k){ return k !== 'total'; });
+  var CHART_KEYS = WALLETS.concat(['total']);
+  var COLORS = { meme: "#c084fc", big: "#5b8cff", stocks: "#f472b6", total: "#22d3a6" };
+  var TICKER = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "DOGEUSDT", "PEPEUSDT"];
+  var PRIMARY = "https://api.binance.com/api/v3/ticker/price";
+  var FALLBACK = "https://data-api.binance.vision/api/v3/ticker/price";
+  var POLL_MS = 3000;
   var RELOAD_MS = 5 * 60 * 1000;
+  var START = Number(D.start || 1000);
+
   var lastPrices = {};
   var endpointUsed = "—";
+  var mode = "rest";
+  var pollTimer = null;
 
   function fmtPrice(n) {
     n = Number(n);
@@ -413,13 +489,19 @@ WARNING: Real crypto trading can lose money. No profit is promised.
     if (!isFinite(n)) return "—";
     return (n > 0 ? "+" : "") + n.toFixed(2) + "%";
   }
-  function lagosNow() {
+  function lagosFmt(d, withSec) {
     try {
-      return new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Africa/Lagos", year: "numeric", month: "2-digit", day: "2-digit",
-        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
-      }).format(new Date()) + " Africa/Lagos";
-    } catch (e) { return new Date().toISOString(); }
+      var o = { timeZone: "Africa/Lagos", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false };
+      if (withSec) { o.second = "2-digit"; o.year = "numeric"; o.month = "2-digit"; }
+      return new Intl.DateTimeFormat("en-GB", o).format(d).replace(",", "");
+    } catch (e) { return d.toISOString(); }
+  }
+  function lagosNow() { return lagosFmt(new Date(), true) + " Africa/Lagos"; }
+  function setCls(el, v, base) {
+    if (!el) return;
+    base = base || 0;
+    el.classList.toggle("pos", v > base);
+    el.classList.toggle("neg", v < base);
   }
   function setLiveStatus(ok, detail) {
     var pill = document.getElementById("live-pill");
@@ -436,153 +518,337 @@ WARNING: Real crypto trading can lose money. No profit is promised.
     el.classList.add(up ? "flash-up" : "flash-down");
   }
 
+  // Value if sold right now (after fee + slippage for trades that use the fee model).
+  function liqValue(t, px) {
+    if (t.fee_model === "fees_v1") return t.qty * px * (1 - t.slip) * (1 - (D.fee || 0.001));
+    return t.qty * px;
+  }
+
   function updateTradeCard(t, price) {
     var card = document.querySelector('.tcard[data-trade-id="' + t.id + '"]');
-    if (!card || !isFinite(price)) return;
-    var value = t.qty * price;
-    var cost = t.notional || (t.qty * t.entry);
-    var pnl = value - cost;
-    var pnlPct = cost > 0 ? (pnl / cost) * 100 : 0;
+    var value = liqValue(t, price);
+    var pnl = value - t.notional;
+    if (!card) return value;
     var liveEl = card.querySelector('[data-role="live"]');
-    var prev = lastPrices[t.bitget || t.symbol];
+    var prev = lastPrices[t.binance];
     if (liveEl) {
+      if (!t.binance) prev = null;
       liveEl.textContent = fmtPrice(price);
-      if (prev != null && prev !== price) flashEl(liveEl, price > prev);
+      if (prev != null && price !== prev) {
+        var up = price > prev;
+        liveEl.classList.toggle("pos", up);
+        liveEl.classList.toggle("neg", !up);
+        flashEl(liveEl, up);
+      }
     }
+    var pct = t.notional > 0 ? (pnl / t.notional) * 100 : 0;
     var usd = card.querySelector(".pnl-usd");
-    var pct = card.querySelector(".pnl-pct");
-    if (usd) { usd.textContent = fmtMoney(pnl, true); usd.classList.toggle("pos", pnl > 0); usd.classList.toggle("neg", pnl < 0); usd.classList.toggle("muted", pnl === 0); }
-    if (pct) pct.textContent = fmtPct(pnlPct) + " unrealized";
+    var pp = card.querySelector(".pnl-pct");
+    if (usd) { usd.textContent = fmtMoney(pnl, true); setCls(usd, pnl); }
+    if (pp) { pp.textContent = fmtPct(pct) + (t.fee_model === "fees_v1" ? " after fees" : ""); setCls(pp, pnl); }
+
+    var lo = Math.min(t.sl, t.tp), hi = Math.max(t.sl, t.tp);
+    var pctBar = hi > lo ? ((price - lo) / (hi - lo)) * 100 : 0;
+    pctBar = Math.max(0, Math.min(100, pctBar));
+    var entryPct = hi > lo ? ((t.entry - lo) / (hi - lo)) * 100 : 50;
+    entryPct = Math.max(0, Math.min(100, entryPct));
     var bar = card.querySelector(".prog-bar");
     var label = card.querySelector(".prog-label");
-    var sl = t.sl, tp = t.tp, entry = t.entry;
-    if (bar && tp > sl) {
-      var pctPos = Math.max(0, Math.min(100, ((price - sl) / (tp - sl)) * 100));
-      bar.style.width = pctPos + "%";
-      if (label) label.textContent = "SL " + fmtPrice(sl) + " → now " + fmtPrice(price) + " → TP " + fmtPrice(tp);
+    var entryMark = card.querySelector(".m-entry");
+    if (bar) {
+      bar.style.width = pctBar.toFixed(1) + "%";
+      bar.classList.toggle("near-tp", pctBar >= 80);
+      bar.classList.toggle("near-sl", pctBar <= 20);
     }
+    if (entryMark) entryMark.style.left = entryPct.toFixed(1) + "%";
+
+    var hitTp = price >= t.tp, hitSl = price <= t.sl;
+    card.classList.toggle("hit-tp", hitTp);
+    card.classList.toggle("hit-sl", hitSl);
     var flag = card.querySelector(".hit-flag");
     if (flag) {
-      if (price <= sl) flag.textContent = "Near / at stop-loss";
-      else if (price >= tp) flag.textContent = "Near / at take-profit";
+      if (hitTp) flag.textContent = "🎯 Take-profit hit — will close at next scan";
+      else if (hitSl) flag.textContent = "🛑 Stop-loss hit — will close at next scan";
       else flag.textContent = "";
     }
-    lastPrices[t.bitget || t.symbol] = price;
-  }
-
-  function updateSummary(prices) {
-    var uEl = document.getElementById("unrealized");
-    var eqEl = document.getElementById("equity-live");
-    var totalUn = 0;
-    trades.forEach(function (t) {
-      var px = prices[t.bitget] || prices[t.symbol];
-      if (!px) return;
-      totalUn += (t.qty * px) - (t.notional || t.qty * t.entry);
-    });
-    if (uEl) {
-      uEl.textContent = fmtMoney(totalUn, true);
-      uEl.classList.toggle("pos", totalUn > 0);
-      uEl.classList.toggle("neg", totalUn < 0);
+    if (label) {
+      var state = hitTp ? "at / past take-profit" : (hitSl ? "at / past stop-loss" : "between SL and TP");
+      label.textContent = pctBar.toFixed(0) + "% toward TP · " + state;
     }
-    if (eqEl && D.usdt_free != null) {
-      var openVal = 0;
-      trades.forEach(function (t) {
-        var px = prices[t.bitget] || prices[t.symbol] || t.entry;
-        openVal += t.qty * px;
-      });
-      eqEl.textContent = fmtMoney(Number(D.usdt_free) + openVal);
-    }
+    return value;
   }
 
-  function bitgetSymbol(sym) {
-    // BTC/USDT -> BTCUSDT
-    return String(sym || "").replace("/", "").toUpperCase();
+  function updateTicker(prices) {
+    TICKER.forEach(function (sym) {
+      var el = document.querySelector('[data-ticker="' + sym + '"]');
+      if (!el || prices[sym] == null) return;
+      var price = prices[sym], prev = lastPrices[sym];
+      var priceEl = el.querySelector(".t-price");
+      if (!priceEl) return;
+      priceEl.textContent = fmtPrice(price);
+      if (prev != null && price !== prev) {
+        var up = price > prev;
+        priceEl.classList.toggle("pos", up);
+        priceEl.classList.toggle("neg", !up);
+        flashEl(priceEl, up);
+        el.classList.toggle("tick-up", up);
+        el.classList.toggle("tick-down", !up);
+      }
+    });
   }
 
-  function fetchBitget(symbols) {
-    // One public call for all spot tickers, then filter
-    return fetch("https://api.bitget.com/api/v2/spot/market/tickers")
-      .then(function (r) { if (!r.ok) throw new Error("bitget " + r.status); return r.json(); })
-      .then(function (j) {
-        var map = {};
-        var list = (j && j.data) || [];
-        var want = {};
-        symbols.forEach(function (s) { want[s] = 1; });
-        list.forEach(function (row) {
-          var s = String(row.symbol || "").toUpperCase();
-          if (want[s]) {
-            var last = Number(row.lastPr || row.last || row.close);
-            if (isFinite(last)) map[s] = last;
-          }
-        });
-        endpointUsed = "Bitget public tickers";
-        return map;
-      });
-  }
+  var liveEquity = null;
 
-  function fetchBinance(symbols) {
-    var qs = encodeURIComponent(JSON.stringify(symbols));
-    var url = "https://api.binance.com/api/v3/ticker/price?symbols=" + qs;
-    return fetch(url)
-      .then(function (r) {
-        if (!r.ok) throw new Error("binance " + r.status);
-        return r.json();
-      })
-      .then(function (arr) {
-        var map = {};
-        (arr || []).forEach(function (row) {
-          map[String(row.symbol).toUpperCase()] = Number(row.price);
-        });
-        endpointUsed = "Binance public (Bitget CORS/fallback)";
-        return map;
-      });
-  }
-
-  function poll() {
-    var symbols = [];
-    var seen = {};
+  function applyPrices(prices) {
+    var openVal = {}, openCost = {};
+    WALLETS.forEach(function (w) { openVal[w] = 0; openCost[w] = 0; });
     trades.forEach(function (t) {
-      var s = t.bitget || bitgetSymbol(t.symbol);
-      if (!seen[s]) { seen[s] = 1; symbols.push(s); }
+      var p = t.binance ? prices[t.binance] : t.last;
+      if (!(t.wallet in openVal)) { openVal[t.wallet] = 0; openCost[t.wallet] = 0; }
+      var v = (p == null) ? t.notional : updateTradeCard(t, p);
+      openVal[t.wallet] += v;
+      openCost[t.wallet] += t.notional;
     });
-    // Always include a few majors for the ticker strip
-    ["BTCUSDT","ETHUSDT","SOLUSDT","DOGEUSDT","XRPUSDT"].forEach(function (s) {
-      if (!seen[s]) { seen[s] = 1; symbols.push(s); }
-    });
-    if (!symbols.length) { setLiveStatus(false, "no symbols"); return; }
+    updateTicker(prices);
+    Object.keys(prices).forEach(function (k) { lastPrices[k] = prices[k]; });
 
-    fetchBitget(symbols).catch(function () {
-      return fetchBinance(symbols);
-    }).then(function (map) {
-      setLiveStatus(true, endpointUsed);
-      trades.forEach(function (t) {
-        var key = t.bitget || bitgetSymbol(t.symbol);
-        if (map[key] != null) updateTradeCard(t, map[key]);
+    var tot = { equity: 0, unreal: 0, open: 0, start: 0 };
+    liveEquity = {};
+    WALLETS.forEach(function (w) {
+      var wd = (D.wallets || {})[w] || { cash: 0 };
+      var eq = wd.cash + openVal[w];
+      var un = openVal[w] - openCost[w];
+      liveEquity[w] = eq;
+      tot.equity += eq; tot.unreal += un; tot.open += openVal[w]; tot.start += START;
+      paintWallet(w, eq, un, openVal[w], START);
+    });
+    liveEquity.total = tot.equity;
+    paintWallet("total", tot.equity, tot.unreal, tot.open, tot.start);
+    drawChart();
+    setLiveStatus(true, endpointUsed + " · " + mode);
+  }
+
+  function paintWallet(w, eq, un, ov, start) {
+    var e = document.getElementById("eq-" + w);
+    var u = document.getElementById("un-" + w);
+    var o = document.getElementById("ov-" + w);
+    var r = document.getElementById("ret-" + w);
+    if (e) { e.textContent = fmtMoney(eq); setCls(e, eq, start); }
+    if (u) { u.textContent = fmtMoney(un, true); setCls(u, un); }
+    if (o) o.textContent = fmtMoney(ov);
+    if (r) { var pct = (eq - start) / start * 100; r.textContent = fmtPct(pct); setCls(r, pct); }
+  }
+
+  // ---------------- Wallet growth chart (inline SVG, no libraries) ----------------
+  function drawChart() {
+    var svg = document.getElementById("equity-chart");
+    if (!svg) return;
+    var pts = (D.equity || []).slice();
+    if (liveEquity) {
+      var lp = { t: Date.now(), live: true };
+      CHART_KEYS.forEach(function (w) { lp[w] = liveEquity[w]; });
+      pts.push(lp);
+    }
+    function ok(v) { return typeof v === "number" && isFinite(v); }
+    var W = 640, H = 300, L = 70, R = 14, T = 14, B = 40;
+    var ns = "http://www.w3.org/2000/svg";
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    function el(name, attrs, text) {
+      var n = document.createElementNS(ns, name);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (text != null) n.textContent = text;
+      svg.appendChild(n);
+      return n;
+    }
+    if (pts.length < 1) {
+      el("text", { x: W / 2, y: H / 2, fill: "#93a0b8", "text-anchor": "middle", "font-size": 14 }, "Chart starts after the first scan");
+      return;
+    }
+    var ys = [START];
+    pts.forEach(function (p) { CHART_KEYS.forEach(function (w) { if (ok(p[w])) ys.push(p[w]); }); });
+    var ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys);
+    var pad = Math.max((ymax - ymin) * 0.15, 5);
+    ymin -= pad; ymax += pad;
+    var tmin = pts[0].t, tmax = pts[pts.length - 1].t;
+    if (tmax <= tmin) tmax = tmin + 60000;
+    function X(t) { return L + (t - tmin) / (tmax - tmin) * (W - L - R); }
+    function Y(v) { return T + (ymax - v) / (ymax - ymin) * (H - T - B); }
+
+    for (var i = 0; i <= 4; i++) {
+      var v = ymin + (ymax - ymin) * i / 4, y = Y(v);
+      el("line", { x1: L, x2: W - R, y1: y, y2: y, stroke: "#243049", "stroke-width": 1 });
+      el("text", { x: L - 6, y: y + 4, fill: "#93a0b8", "text-anchor": "end", "font-size": 17 }, "$" + v.toFixed(0));
+    }
+    var yb = Y(START);
+    el("line", { x1: L, x2: W - R, y1: yb, y2: yb, stroke: "#f5a524", "stroke-width": 1, "stroke-dasharray": "4 4", opacity: 0.7 });
+    el("text", { x: W - R, y: yb - 4, fill: "#f5a524", "text-anchor": "end", "font-size": 15 }, "start $" + START.toFixed(0));
+    el("text", { x: L, y: H - 10, fill: "#93a0b8", "font-size": 17 }, lagosFmt(new Date(tmin)));
+    el("text", { x: W - R, y: H - 10, fill: "#93a0b8", "font-size": 17, "text-anchor": "end" },
+      (pts[pts.length - 1].live ? "now " : "") + lagosFmt(new Date(tmax)) + " Lagos");
+
+    CHART_KEYS.forEach(function (w) {
+      var d = "";
+      pts.forEach(function (p, j) {
+        if (!ok(p[w])) return;
+        d += (d ? " L" : "M") + X(p.t).toFixed(1) + " " + Y(p[w]).toFixed(1);
       });
-      // ticker strip
-      document.querySelectorAll(".ticker-item[data-sym]").forEach(function (el) {
-        var s = el.getAttribute("data-sym");
-        var px = map[s];
-        var priceEl = el.querySelector(".t-price");
-        if (priceEl && px != null) {
-          var prev = lastPrices["strip:" + s];
-          priceEl.textContent = fmtPrice(px);
-          if (prev != null && prev !== px) {
-            el.classList.toggle("tick-up", px > prev);
-            el.classList.toggle("tick-down", px < prev);
-          }
-          lastPrices["strip:" + s] = px;
-        }
+      if (!d) return;
+      el("path", { d: d, fill: "none", stroke: COLORS[w] || "#22d3a6", "stroke-width": w==='total'?3:2.5, "stroke-linejoin": "round", "stroke-linecap": "round" });
+      pts.forEach(function (p) {
+        if (!ok(p[w])) return;
+        el("circle", { cx: X(p.t), cy: Y(p[w]), r: p.live ? 4.5 : 3, fill: p.live ? "#0b1220" : (COLORS[w]||"#22d3a6"), stroke: COLORS[w]||"#22d3a6", "stroke-width": 2 });
       });
-      updateSummary(map);
-    }).catch(function (e) {
-      setLiveStatus(false, String(e && e.message || e));
     });
   }
 
-  poll();
-  setInterval(poll, POLL_MS);
+  function symbolsNeeded() {
+    var set = {};
+    trades.forEach(function (t) { if (t.binance) set[t.binance] = true; });
+    TICKER.forEach(function (s) { set[s] = true; });
+    return Object.keys(set);
+  }
+
+  function fetchRest(base) {
+    var syms = symbolsNeeded();
+    var url = base + "?symbols=" + encodeURIComponent(JSON.stringify(syms));
+    return fetch(url, { cache: "no-store", mode: "cors" }).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function (data) {
+      var prices = {};
+      (Array.isArray(data) ? data : [data]).forEach(function (d) {
+        if (d && d.symbol) prices[d.symbol] = Number(d.price);
+      });
+      return prices;
+    });
+  }
+
+  function pollOnce() {
+    fetchRest(PRIMARY).then(function (p) { endpointUsed = "api.binance.com"; return p; })
+      .catch(function () { return fetchRest(FALLBACK).then(function (p) { endpointUsed = "data-api.binance.vision"; return p; }); })
+      .then(function (prices) { mode = "rest"; applyPrices(prices); })
+      .catch(function (err) {
+        console.warn("REST price poll failed, trying websocket", err);
+        setLiveStatus(false, "REST failed — trying WS");
+        startWebsocket();
+      });
+  }
+
+  var ws = null, wsBackoff = null;
+  function startWebsocket() {
+    if (ws && (ws.readyState === 0 || ws.readyState === 1)) return;
+    var streams = symbolsNeeded().map(function (s) { return s.toLowerCase() + "@trade"; });
+    if (!streams.length) return;
+    try { ws = new WebSocket("wss://stream.binance.com:9443/stream?streams=" + streams.join("/")); }
+    catch (e) { setLiveStatus(false, "WS blocked"); return; }
+    mode = "ws"; endpointUsed = "stream.binance.com";
+    var buf = {};
+    ws.onmessage = function (ev) {
+      try { var m = JSON.parse(ev.data); var d = m.data || m; if (d && d.s) buf[d.s] = Number(d.p); } catch (e) {}
+    };
+    ws.onopen = function () {
+      setLiveStatus(true, "stream.binance.com · ws");
+      if (pollTimer) clearInterval(pollTimer);
+      pollTimer = setInterval(function () { if (Object.keys(buf).length) applyPrices(Object.assign({}, buf)); }, POLL_MS);
+    };
+    ws.onerror = function () { setLiveStatus(false, "WS error"); };
+    ws.onclose = function () {
+      setLiveStatus(false, "WS closed — REST retry");
+      if (wsBackoff) clearTimeout(wsBackoff);
+      wsBackoff = setTimeout(pollOnce, 2000);
+    };
+  }
+
+  // Wallet filter for trade cards
+  Array.prototype.forEach.call(document.querySelectorAll(".filter button"), function (btn) {
+    btn.addEventListener("click", function () {
+      var f = btn.getAttribute("data-f");
+      var group = btn.parentNode;
+      Array.prototype.forEach.call(group.querySelectorAll("button"), function (b) { b.classList.toggle("on", b === btn); });
+      var target = document.getElementById(group.getAttribute("data-target"));
+      if (!target) return;
+      Array.prototype.forEach.call(target.querySelectorAll(".tcard"), function (c) {
+        c.style.display = (f === "all" || c.getAttribute("data-wallet") === f) ? "" : "none";
+      });
+    });
+  });
+
+  drawChart();
+  pollOnce();
+  pollTimer = setInterval(pollOnce, POLL_MS);
   setTimeout(function () { location.reload(); }, RELOAD_MS);
+  setInterval(function () {
+    var clock = document.getElementById("live-clock");
+    if (clock) clock.textContent = lagosNow();
+  }, 1000);
+  window.__drawChart = drawChart;
+})();
+
+</script>
+<script>
+
+(function(){
+  var D = window.__DATA__ || {};
+  var spot = Number(D.spot_cash || 0);
+  // After each price apply, correct wallet cards: type cards = open only; total = spot + opens
+  var _paint = null;
+  function fixCards(){
+    var ovM = 0, ovB = 0, unM = 0, unB = 0;
+    (D.open || []).forEach(function(t){
+      // leave live.js to update open cards; we only fix the wallet summary numbers for cash
+    });
+    // Cash lines
+    // big card incorrectly includes spot cash in equity via live.js — override eq-big/eq-meme/eq-total after draw
+  }
+  // Override applyPrices by wrapping poll success: monkeypatch setLiveStatus to also fix totals
+  var pill = document.getElementById("live-pill");
+  var lastFix = 0;
+  setInterval(function(){
+    var opens = D.open || [];
+    var openVal = {meme:0, big:0}, openCost = {meme:0, big:0};
+    opens.forEach(function(t){
+      var card = document.querySelector('.tcard[data-trade-id="'+t.id+'"]');
+      var liveEl = card && card.querySelector('[data-role="live"]');
+      var px = liveEl && liveEl.textContent && liveEl.textContent !== "—" ? Number(String(liveEl.textContent).replace(/,/g,"")) : t.entry;
+      if (!isFinite(px)) px = t.entry;
+      var slip = t.slip || 0, fee = D.fee || 0.001;
+      var value = t.qty * px * (1 - slip) * (1 - fee);
+      openVal[t.wallet] = (openVal[t.wallet]||0) + value;
+      openCost[t.wallet] = (openCost[t.wallet]||0) + t.notional;
+    });
+    function fmtMoney(n, signed){
+      n = Number(n); if (!isFinite(n)) return "—";
+      var sign = n < 0 ? "-" : (signed && n > 0 ? "+" : "");
+      return sign + "$" + Math.abs(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+    }
+    function fmtPct(n){ n=Number(n); if(!isFinite(n)) return "—"; return (n>0?"+":"")+n.toFixed(2)+"%"; }
+    function setCls(el,v,base){ if(!el)return; base=base||0; el.classList.toggle("pos", v>base); el.classList.toggle("neg", v<base); }
+    ["meme","big"].forEach(function(w){
+      var eq = openVal[w]||0, un = eq - (openCost[w]||0);
+      var e = document.getElementById("eq-"+w);
+      var u = document.getElementById("un-"+w);
+      var o = document.getElementById("ov-"+w);
+      if (e) { e.textContent = fmtMoney(eq); setCls(e, eq, 0); }
+      if (u) { u.textContent = fmtMoney(un, true); setCls(u, un); }
+      if (o) o.textContent = fmtMoney(eq);
+      var r = document.getElementById("ret-"+w);
+      if (r) { r.textContent = "—"; r.className = "muted"; }
+    });
+    var totOpen = (openVal.meme||0)+(openVal.big||0);
+    var totCost = (openCost.meme||0)+(openCost.big||0);
+    var totEq = spot + totOpen;
+    var totUn = totOpen - totCost;
+    var start = Number(D.start||totEq);
+    var e = document.getElementById("eq-total");
+    var u = document.getElementById("un-total");
+    var o = document.getElementById("ov-total");
+    var r = document.getElementById("ret-total");
+    if (e) { e.textContent = fmtMoney(totEq); setCls(e, totEq, start); }
+    if (u) { u.textContent = fmtMoney(totUn, true); setCls(u, totUn); }
+    if (o) o.textContent = fmtMoney(totOpen);
+    if (r) { var p = start ? (totEq-start)/start*100 : 0; r.textContent = fmtPct(p); setCls(r, p); }
+  }, 1000);
 })();
 
 </script>
