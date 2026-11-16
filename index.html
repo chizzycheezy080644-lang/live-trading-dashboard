@@ -285,7 +285,7 @@ footer {
     <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
       <div class="pill live-off" id="live-pill"><span class="dot"></span><strong>LIVE</strong>
         <span id="live-tick-time">connecting…</span></div>
-      <div class="pill"><span class="dot" style="animation:none;background:var(--accent)"></span> Last scan: Nov 13, 23:29 Lagos</div>
+      <div class="pill"><span class="dot" style="animation:none;background:var(--accent)"></span> Last scan: Nov 16, 17:03 Lagos</div>
     </div>
   </header>
 
@@ -301,26 +301,26 @@ footer {
 <div class="card wcard meme">
   <h3><span class="swatch" style="background:#c084fc"></span>Meme coins</h3>
   <div class="label">Open value (this type)</div>
-  <div class="big-num" id="eq-meme">$2.14</div>
+  <div class="big-num" id="eq-meme">$0.00</div>
   <div class="kv">
     <span>Return</span><span id="ret-meme" class="muted">—</span>
     <span>Unrealized (if sold now)</span><span id="un-meme">—</span>
-    <span>Open trades value</span><span id="ov-meme">$2.14</span>
+    <span>Open trades value</span><span id="ov-meme">$0.00</span>
     <span>Cash (free USDT)</span><span>— (shared pool)</span>
-    <span>Realized P/L (net)</span><span class="muted">$0.00</span>
-    <span>Win rate</span><span>60%</span>
-    <span>Open / closed</span><span>2 / 5</span>
+    <span>Realized P/L (net)</span><span class="neg">-$0.03</span>
+    <span>Win rate</span><span>57%</span>
+    <span>Open / closed</span><span>0 / 7</span>
     <span>Started with</span><span>—</span>
   </div>
 </div>
 <div class="card wcard big">
   <h3><span class="swatch" style="background:#5b8cff"></span>Big coins</h3>
   <div class="label">Open value (this type)</div>
-  <div class="big-num" id="eq-big">$1.02</div>
+  <div class="big-num" id="eq-big">$0.97</div>
   <div class="kv">
     <span>Return</span><span id="ret-big" class="muted">—</span>
     <span>Unrealized (if sold now)</span><span id="un-big">—</span>
-    <span>Open trades value</span><span id="ov-big">$1.02</span>
+    <span>Open trades value</span><span id="ov-big">$0.97</span>
     <span>Cash (free USDT)</span><span>— (shared pool)</span>
     <span>Realized P/L (net)</span><span class="neg">-$0.05</span>
     <span>Win rate</span><span>33%</span>
@@ -331,27 +331,27 @@ footer {
 <div class="card wcard total">
   <h3><span class="swatch" style="background:#22d3a6"></span>Combined (Spot)</h3>
   <div class="label">Live REAL equity</div>
-  <div class="big-num" id="eq-total">$5.57</div>
+  <div class="big-num" id="eq-total">$1.33</div>
   <div class="kv">
-    <span>Return</span><span id="ret-total" class="pos">+3.59%</span>
+    <span>Return</span><span id="ret-total" class="neg">-75.29%</span>
     <span>Unrealized (if sold now)</span><span id="un-total">—</span>
-    <span>Open trades value</span><span id="ov-total">$3.55</span>
-    <span>Cash (free USDT)</span><span>$2.02</span>
-    <span>Realized P/L (net)</span><span class="neg">-$0.05</span>
+    <span>Open trades value</span><span id="ov-total">$1.33</span>
+    <span>Cash (free USDT)</span><span>$0.00</span>
+    <span>Realized P/L (net)</span><span class="neg">-$0.08</span>
     <span>Win rate</span><span>50%</span>
-    <span>Open / closed</span><span>3 / 8</span>
+    <span>Open / closed</span><span>1 / 10</span>
     <span>Started with</span><span>$5.37</span>
   </div>
 </div></div>
 
   <section class="section">
     <h2>Last scan alerts</h2>
-    <div class="alerts none">No trades opened or closed in the last scan.</div>
+    <div class="alerts"><ul style="margin:0;padding-left:18px"><li>CLOSED #11 IMX: stop_loss — P/L $-0.04 (-3.30%) [reconciled].</li><li>CLOSED #13 ZRO: take_profit — P/L $+0.01 (+1.15%) [reconciled].</li></ul></div>
   </section>
 
   <section class="section">
     <h2>Scoreboard</h2>
-    <div class='sb-wrap'><table class='sb'><thead><tr><th>Stat</th><th class='num'>Meme coins</th><th class='num'>Big coins</th><th class='num'>Combined (Spot)</th></tr></thead><tbody><tr><td>Win rate</td><td class='num'>60.0%</td><td class='num'>33.3%</td><td class='num'>50.0%</td></tr><tr><td>Wins</td><td class='num'>3</td><td class='num'>1</td><td class='num'>4</td></tr><tr><td>Losses</td><td class='num'>2</td><td class='num'>2</td><td class='num'>4</td></tr><tr><td>Average win</td><td class='num'>+$0.02</td><td class='num'>+$0.02</td><td class='num'>+$0.02</td></tr><tr><td>Average loss</td><td class='num'>-$0.03</td><td class='num'>-$0.04</td><td class='num'>-$0.03</td></tr><tr><td>Profit factor</td><td class='num'>1.00</td><td class='num'>0.31</td><td class='num'>0.58</td></tr><tr><td>Max drawdown</td><td class='num'>-$2.08 (100.00%)</td><td class='num'>-$2.22 (100.00%)</td><td class='num'>-$0.15 (2.75%)</td></tr><tr><td>Total fees paid</td><td class='num'>$0.01</td><td class='num'>$0.01</td><td class='num'>$0.02</td></tr><tr><td>Realized P/L (net)</td><td class='num'>$0.00</td><td class='num'>-$0.05</td><td class='num'>-$0.05</td></tr></tbody></table></div><div class='sb-help'><b>Win rate</b> = share of closed LIVE trades that made money. <b>Profit factor</b> = money won ÷ money lost (above 1.0 is good; needs many trades to mean anything). <b>Max drawdown</b> = biggest drop from a high point — the scariest moment so far. A handful of trades is NOT enough to judge the bot. Real money can be lost.</div>
+    <div class='sb-wrap'><table class='sb'><thead><tr><th>Stat</th><th class='num'>Meme coins</th><th class='num'>Big coins</th><th class='num'>Combined (Spot)</th></tr></thead><tbody><tr><td>Win rate</td><td class='num'>57.1%</td><td class='num'>33.3%</td><td class='num'>50.0%</td></tr><tr><td>Wins</td><td class='num'>4</td><td class='num'>1</td><td class='num'>5</td></tr><tr><td>Losses</td><td class='num'>3</td><td class='num'>2</td><td class='num'>5</td></tr><tr><td>Average win</td><td class='num'>+$0.02</td><td class='num'>+$0.02</td><td class='num'>+$0.02</td></tr><tr><td>Average loss</td><td class='num'>-$0.03</td><td class='num'>-$0.04</td><td class='num'>-$0.03</td></tr><tr><td>Profit factor</td><td class='num'>0.68</td><td class='num'>0.31</td><td class='num'>0.51</td></tr><tr><td>Max drawdown</td><td class='num'>-$2.14 (100.00%)</td><td class='num'>-$2.22 (100.00%)</td><td class='num'>-$4.32 (76.51%)</td></tr><tr><td>Total fees paid</td><td class='num'>$0.01</td><td class='num'>$0.01</td><td class='num'>$0.02</td></tr><tr><td>Realized P/L (net)</td><td class='num'>-$0.03</td><td class='num'>-$0.05</td><td class='num'>-$0.08</td></tr></tbody></table></div><div class='sb-help'><b>Win rate</b> = share of closed LIVE trades that made money. <b>Profit factor</b> = money won ÷ money lost (above 1.0 is good; needs many trades to mean anything). <b>Max drawdown</b> = biggest drop from a high point — the scariest moment so far. A handful of trades is NOT enough to judge the bot. Real money can be lost.</div>
   </section>
 
   <section class="section">
@@ -374,27 +374,6 @@ footer {
     <h2>Open live trades</h2>
     <div class="filter" data-target="open-trades"><button class="on" data-f="all">All</button><button data-f="meme">Meme coins</button><button data-f="big">Big coins</button></div>
     <div class="trades" id="open-trades">
-<div class="tcard" data-trade-id="11" data-wallet="meme">
-  <div class="top">
-    <div><div class="coin">IMX <span class="sub">#11</span></div>
-      <span class="badge wallet-meme">Meme coins</span> <span class="badge fees">LIVE · plan</span>
-      <div class="sub">Opened Nov 13, 22:10 Lagos</div></div>
-    <div class="pnl-box"><div class="pnl-usd muted">—</div><div class="pnl-pct sub">waiting for live price…</div></div>
-  </div>
-  <div class="grid3">
-    <div><span>Entry</span>0.1092</div>
-    <div><span>Live</span><b class="live-price" data-role="live">—</b></div>
-    <div><span>Size</span>$1.10</div>
-    <div><span>Stop-loss</span><b class="neg">0.10573</b></div>
-    <div><span>Take-profit</span><b class="pos">0.1119</b></div>
-    <div><span>Fee (est.)</span>$0.00</div>
-  </div>
-  <div class="progress-cell"><div class="prog-wrap"><div class="prog-bar" style="width:0%"></div>
-    <div class="prog-markers"><span class="m-sl">SL</span><span class="m-entry">E</span><span class="m-tp">TP</span></div>
-  </div><div class="prog-label sub">—</div></div>
-  <div class="hit-flag"></div>
-  <div class="why"><b>Why I took this trade:</b> [meme] Volume jumped to 16.49x its normal level; no bad news found (no matching headlines); price 0.109 was 0.78% above support at 0.10815. Safety exit (stop-loss) 0.10573 (-3.0%), target (take-profit) 0.1119 (+2.7%).</div>
-</div>
 <div class="tcard" data-trade-id="12" data-wallet="big">
   <div class="top">
     <div><div class="coin">BTC <span class="sub">#12</span></div>
@@ -415,27 +394,6 @@ footer {
   </div><div class="prog-label sub">—</div></div>
   <div class="hit-flag"></div>
   <div class="why"><b>Why I took this trade:</b> [big] Volume jumped to 1.81x its normal level; news looked neutral (score 0), e.g. &quot;Bitcoin plunges to $68,000 as Anthropic IPO frenzy adds to market jitters&quot;; price 68,376.01 was 0.399% above support at 68,103.00. Safety exit (stop-loss) 66,324.73 (-3.0%), target (take-profit) 69,252.60 (+1.3%).</div>
-</div>
-<div class="tcard" data-trade-id="13" data-wallet="meme">
-  <div class="top">
-    <div><div class="coin">ZRO <span class="sub">#13</span></div>
-      <span class="badge wallet-meme">Meme coins</span> <span class="badge fees">LIVE · plan</span>
-      <div class="sub">Opened Nov 13, 23:14 Lagos</div></div>
-    <div class="pnl-box"><div class="pnl-usd muted">—</div><div class="pnl-pct sub">waiting for live price…</div></div>
-  </div>
-  <div class="grid3">
-    <div><span>Entry</span>1.5660</div>
-    <div><span>Live</span><b class="live-price" data-role="live">—</b></div>
-    <div><span>Size</span>$1.05</div>
-    <div><span>Stop-loss</span><b class="neg">1.5180</b></div>
-    <div><span>Take-profit</span><b class="pos">1.5857</b></div>
-    <div><span>Fee (est.)</span>$0.00</div>
-  </div>
-  <div class="progress-cell"><div class="prog-wrap"><div class="prog-bar" style="width:0%"></div>
-    <div class="prog-markers"><span class="m-sl">SL</span><span class="m-entry">E</span><span class="m-tp">TP</span></div>
-  </div><div class="prog-label sub">—</div></div>
-  <div class="hit-flag"></div>
-  <div class="why"><b>Why I took this trade:</b> [meme] Volume jumped to 2.33x its normal level; no bad news found (no matching headlines); price 1.5650 was 0.447% above support at 1.5580. Safety exit (stop-loss) 1.5180 (-3.0%), target (take-profit) 1.5857 (+1.3%).</div>
 </div></div>
   </section>
 
@@ -443,6 +401,38 @@ footer {
     <h2>Closed live trades</h2>
     <div class="filter" data-target="closed-trades"><button class="on" data-f="all">All</button><button data-f="meme">Meme coins</button><button data-f="big">Big coins</button></div>
     <div class="trades" id="closed-trades">
+<div class="tcard" data-wallet="meme">
+  <div class="top">
+    <div><div class="coin">🛑 IMX <span class="sub">#11</span></div>
+      <span class="badge wallet-meme">Meme coins</span> <span class="badge fees">LIVE</span>
+      <div class="sub">Closed Nov 14, 01:13 Lagos</div></div>
+    <div class="pnl-box"><div class="pnl-usd neg">-$0.04</div>
+      <div class="pnl-pct sub">-3.30% net</div></div>
+  </div>
+  <div class="grid3">
+    <div><span>Entry</span>0.1092</div>
+    <div><span>Exit</span>0.1056</div>
+    <div><span>Fees</span>$0.00</div>
+  </div>
+  <div class="why exitnote"><b>Why it closed:</b> Stop-loss hit at 0.1056.</div>
+  <div class="why"><b>Why I took this trade:</b> [meme] Volume jumped to 16.49x its normal level; no bad news found (no matching headlines); price 0.109 was 0.78% above support at 0.10815. Safety exit (stop-loss) 0.10573 (-3.0%), target (take-profit) 0.1119 (+2.7%).</div>
+</div>
+<div class="tcard" data-wallet="meme">
+  <div class="top">
+    <div><div class="coin">🎯 ZRO <span class="sub">#13</span></div>
+      <span class="badge wallet-meme">Meme coins</span> <span class="badge fees">LIVE</span>
+      <div class="sub">Closed Nov 14, 01:01 Lagos</div></div>
+    <div class="pnl-box"><div class="pnl-usd pos">+$0.01</div>
+      <div class="pnl-pct sub">+1.15% net</div></div>
+  </div>
+  <div class="grid3">
+    <div><span>Entry</span>1.5660</div>
+    <div><span>Exit</span>1.5840</div>
+    <div><span>Fees</span>$0.00</div>
+  </div>
+  <div class="why exitnote"><b>Why it closed:</b> Take-profit hit at 1.5840.</div>
+  <div class="why"><b>Why I took this trade:</b> [meme] Volume jumped to 2.33x its normal level; no bad news found (no matching headlines); price 1.5650 was 0.447% above support at 1.5580. Safety exit (stop-loss) 1.5180 (-3.0%), target (take-profit) 1.5857 (+1.3%).</div>
+</div>
 <div class="tcard" data-wallet="meme">
   <div class="top">
     <div><div class="coin">🛑 NIGHT <span class="sub">#10</span></div>
@@ -575,7 +565,7 @@ footer {
 
   <section class="section card">
     <h2>How the last scan narrowed down</h2>
-    <div class="funnel"><div class="funnel-row"><div class="funnel-step">Step 1</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%"><span class="funnel-num">227</span></div></div><div class="funnel-meta"><strong>Liquid USDT pairs</strong><span>Above the $500k volume floor</span></div></div><div class="funnel-row"><div class="funnel-step">Step 2</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:26%"><span class="funnel-num">60</span></div></div><div class="funnel-meta"><strong>Deep-scanned</strong><span>Top 60 by liquidity</span></div></div><div class="funnel-row"><div class="funnel-step">Step 3</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">14</span></div></div><div class="funnel-meta"><strong>Volume spikes</strong><span>≥ 1.8× recent average</span></div></div><div class="funnel-row"><div class="funnel-step">Step 4</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">37</span></div></div><div class="funnel-meta"><strong>Memes / non-big deep-scanned</strong><span>Tagged like the paper meme wallet</span></div></div><div class="funnel-row"><div class="funnel-step">Step 5</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">0</span></div></div><div class="funnel-meta"><strong>LIVE trades opened</strong><span>Spike + news OK + near support (Bitget spot)</span></div></div></div>
+    <div class="funnel"><div class="funnel-row"><div class="funnel-step">Step 1</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%"><span class="funnel-num">222</span></div></div><div class="funnel-meta"><strong>Liquid USDT pairs</strong><span>Above the $500k volume floor</span></div></div><div class="funnel-row"><div class="funnel-step">Step 2</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:27%"><span class="funnel-num">60</span></div></div><div class="funnel-meta"><strong>Deep-scanned</strong><span>Top 60 by liquidity</span></div></div><div class="funnel-row"><div class="funnel-step">Step 3</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">7</span></div></div><div class="funnel-meta"><strong>Volume spikes</strong><span>≥ 1.8× recent average</span></div></div><div class="funnel-row"><div class="funnel-step">Step 4</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">37</span></div></div><div class="funnel-meta"><strong>Memes / non-big deep-scanned</strong><span>Tagged like the paper meme wallet</span></div></div><div class="funnel-row"><div class="funnel-step">Step 5</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18%"><span class="funnel-num">0</span></div></div><div class="funnel-meta"><strong>LIVE trades opened</strong><span>Spike + news OK + near support (Bitget spot)</span></div></div></div>
   </section>
 
   <section class="section">
@@ -598,7 +588,7 @@ footer {
 
   <footer>REAL MONEY on Bitget spot. Live prices from public Binance market data (same as paper). Times in Africa/Lagos. No API keys on this page.</footer>
 </div>
-<script>window.__DATA__ = {"start":5.3726,"fee":0.001,"wallets":{"meme":{"name":"Meme coins","cash":0.0},"big":{"name":"Big coins","cash":2.018942}},"spot_cash":2.018942,"open":[{"id":"11","wallet":"meme","symbol":"IMX/USDT","base":"IMX","binance":"IMXUSDT","last":0.1079,"entry":0.1092,"sl":0.10573,"tp":0.1119,"qty":10.0631268,"notional":1.1,"fee_model":"fees_v1","slip":0.002},{"id":"12","wallet":"big","symbol":"BTC/USDT","base":"BTC","binance":"BTCUSDT","last":68326.01,"entry":68378.33,"sl":66324.7297,"tp":69252.6,"qty":1.4985e-05,"notional":1.03,"fee_model":"fees_v1","slip":0.0005},{"id":"13","wallet":"meme","symbol":"ZRO/USDT","base":"ZRO","binance":"ZROUSDT","last":1.57,"entry":1.566,"sl":1.51805,"tp":1.58575,"qty":0.66933,"notional":1.05,"fee_model":"fees_v1","slip":0.002}],"equity":[{"t":1794266099000,"meme":0.0,"big":1.1905,"total":5.3691},{"t":1794266169000,"meme":1.0357,"big":1.1905,"total":5.3578},{"t":1794266349000,"meme":1.0455,"big":1.1905,"total":5.3677},{"t":1794266537000,"meme":1.045,"big":1.1885,"total":5.3651},{"t":1794267481000,"meme":1.0413,"big":1.19,"total":5.363},{"t":1794279361000,"meme":1.0455,"big":2.1981,"total":5.3253},{"t":1794286582000,"meme":2.0318,"big":2.1891,"total":5.2533},{"t":1794293923000,"meme":2.0443,"big":2.1816,"total":5.2236},{"t":1794297086000,"meme":2.0474,"big":2.1764,"total":5.2215},{"t":1794298643000,"meme":2.0847,"big":2.2243,"total":5.6429},{"t":1794322831000,"meme":1.066,"big":1.0226,"total":5.6519},{"t":1794344863000,"meme":0.0,"big":0.0,"total":5.5823},{"t":1794410882000,"meme":0.0,"big":1.0982,"total":5.5813},{"t":1794465318000,"meme":0.0,"big":0.0,"total":5.6025},{"t":1794478837000,"meme":1.0886,"big":0.0,"total":5.5923},{"t":1794492240000,"meme":1.0979,"big":0.0,"total":5.6063},{"t":1794529890000,"meme":0.0,"big":0.0,"total":5.5901},{"t":1794566281000,"meme":0.0,"big":0.0,"total":5.5804},{"t":1794604250000,"meme":1.0969,"big":0.0,"total":5.5786},{"t":1794605197000,"meme":1.0989,"big":0.0,"total":5.5801},{"t":1794606146000,"meme":1.0969,"big":0.0,"total":5.5772},{"t":1794607096000,"meme":1.0959,"big":0.9574,"total":5.5756},{"t":1794608044000,"meme":2.1194,"big":1.0223,"total":5.5607},{"t":1794608994000,"meme":2.1367,"big":1.0239,"total":5.5654}],"stock_note":""};</script>
+<script>window.__DATA__ = {"start":5.3726,"fee":0.001,"wallets":{"meme":{"name":"Meme coins","cash":0.0},"big":{"name":"Big coins","cash":0.0}},"spot_cash":0.0,"open":[{"id":"12","wallet":"big","symbol":"BTC/USDT","base":"BTC","binance":"BTCUSDT","last":64559.0,"entry":68378.33,"sl":66324.7297,"tp":69252.6,"qty":1.4985e-05,"notional":1.03,"fee_model":"fees_v1","slip":0.0005}],"equity":[{"t":1794266099000,"meme":0.0,"big":1.1905,"total":5.3691},{"t":1794266169000,"meme":1.0357,"big":1.1905,"total":5.3578},{"t":1794266349000,"meme":1.0455,"big":1.1905,"total":5.3677},{"t":1794266537000,"meme":1.045,"big":1.1885,"total":5.3651},{"t":1794267481000,"meme":1.0413,"big":1.19,"total":5.363},{"t":1794279361000,"meme":1.0455,"big":2.1981,"total":5.3253},{"t":1794286582000,"meme":2.0318,"big":2.1891,"total":5.2533},{"t":1794293923000,"meme":2.0443,"big":2.1816,"total":5.2236},{"t":1794297086000,"meme":2.0474,"big":2.1764,"total":5.2215},{"t":1794298643000,"meme":2.0847,"big":2.2243,"total":5.6429},{"t":1794322831000,"meme":1.066,"big":1.0226,"total":5.6519},{"t":1794344863000,"meme":0.0,"big":0.0,"total":5.5823},{"t":1794410882000,"meme":0.0,"big":1.0982,"total":5.5813},{"t":1794465318000,"meme":0.0,"big":0.0,"total":5.6025},{"t":1794478837000,"meme":1.0886,"big":0.0,"total":5.5923},{"t":1794492240000,"meme":1.0979,"big":0.0,"total":5.6063},{"t":1794529890000,"meme":0.0,"big":0.0,"total":5.5901},{"t":1794566281000,"meme":0.0,"big":0.0,"total":5.5804},{"t":1794604250000,"meme":1.0969,"big":0.0,"total":5.5786},{"t":1794605197000,"meme":1.0989,"big":0.0,"total":5.5801},{"t":1794606146000,"meme":1.0969,"big":0.0,"total":5.5772},{"t":1794607096000,"meme":1.0959,"big":0.9574,"total":5.5756},{"t":1794608044000,"meme":2.1194,"big":1.0223,"total":5.5607},{"t":1794608994000,"meme":2.1367,"big":1.0239,"total":5.5654},{"t":1794845031000,"meme":0.0,"big":0.9674,"total":1.3276}],"stock_note":""};</script>
 <script>
 (function () {
   "use strict";
